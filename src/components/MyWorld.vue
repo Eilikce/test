@@ -23,7 +23,7 @@
                     <el-menu-item index="1-2" @click="changeVersion">换代</el-menu-item>
                   </el-menu-item-group>
                   <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
+                    <el-menu-item index="1-3" @click="remoteRequest">远程请求</el-menu-item>
                   </el-menu-item-group>
                   <el-submenu index="1-4">
                     <template slot="title">选项4</template>
@@ -135,6 +135,13 @@ export default {
       } else {
         return row.detail;
       }
+    },
+    remoteRequest() {
+      const api = "http://localhost:8080/getToken";
+      this.axios.get(api).then((res) => {
+        const token = res.data;
+        localStorage.setItem("token", token);
+      });
     },
   },
   data() {

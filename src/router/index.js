@@ -23,13 +23,20 @@ const router = new Router({
 // 守卫
 router.beforeEach((to, from, next) => {
 
-  console.log("toPath:" + to.path)
-  console.log("fromPath:" + from.path)
+  const token = localStorage.getItem("token");
+
+  if (token == null) {
+    // 没有token，跳转登录页
+  } else {
+    // 有token，校验token
+
+    // 失败，跳转登录页
+    // 成功，next()
+    next()
+  }
 
 
 
-
-  next()
 })
 
 export default router
